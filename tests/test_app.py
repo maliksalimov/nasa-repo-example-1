@@ -8,13 +8,17 @@ def run_app():
     return AppTest.from_file("../app.py", default_timeout=60).run()
 
 
-def test_app_asks_for_data_when_database_is_empty():
+def html_text(at):
+    return " ".join(element.proto.body for element in at.get("html"))
+
+
+def test_app_shows_empty_state_when_database_is_empty():
     at = run_app()
-    assert not at.exception
-    assert "Datanı yenilə" in at.error[0].value
+    assert not at.exception, [e.value for e in at.exception]
+    assert "Asteroid datası hələ yoxdur." in html_text(at)
 
 
-def test_app_renders_all_tabs_with_data():
+def test_app_renders_every_section_and_filters():
     db.replace_recent(
         [asteroid("(A)", diameter_m=600.0, is_hazardous=True), asteroid("(B)", "2026-11-03")],
         "2026-11-02",
@@ -27,9 +31,18 @@ def test_app_renders_all_tabs_with_data():
 
     at = run_app()
     assert not at.exception, [e.value for e in at.exception]
-    assert [tab.label for tab in at.tabs] == ["Son 7 gün", "Baza xətti", "Toqquşma riski (Sentry)", "Gələcək yaxınlaşmalar"]
-    assert at.metric[0].value == "2"
+    text = html_text(at)
+    for heading in [
+        "Bu həftə 2 asteroid Yerin yanından keçdi.",
+        "Hansılarına diqqət etmək lazımdır?",
+        "Bu həftə adi həftədirmi?",
+        "Yerə dəyə biləcək obyektlər",
+        "Növbəti 60 gündə kim yaxınlaşacaq?",
+    ]:
+        assert heading in text
+    assert "Diqqət sırası, 2 asteroid" in text
+    assert "2026 VK2" in text
 
-    at.sidebar.checkbox[0].check().run()
+    at.toggle[0].set_value(True).run()
     assert not at.exception
-    assert at.metric[0].value == "1"
+    assert "Diqqət sırası, 1 asteroid" in html_text(at)

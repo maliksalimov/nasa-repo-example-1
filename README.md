@@ -39,7 +39,7 @@ app.py (Streamlit)   serve.py + web/ (React)     ekran
 
 | Fayl | Yalnız bunu edir | Bunu etmir |
 |---|---|---|
-| `app.py` | Streamlit ekranı: filtr, qrafik, cədvəl, ekran mətnləri | SQL, API, hesablama |
+| `app.py` | Streamlit ekranı (cyanotype dizayn, `.streamlit/config.toml`, şrift `static/fonts`), canlı: https://space-app-asteroid-radar.streamlit.app | SQL, API, hesablama |
 | `serve.py` | HTTP: `web/dist`, `/api/data` (JSON), `/api/refresh`, yalnız 127.0.0.1 | SQL, API, hesablama |
 | `web/` | React + TypeScript ekranı | Python tərəfinə toxunmur, yalnız `/api` |
 | `logic.py` | qaydalar: baza xətti, kənar dəyər, diqqət skoru, diametr təxmini, Sentry uyğunluğu, `build_dashboard()` | I/O, ekran mətni |

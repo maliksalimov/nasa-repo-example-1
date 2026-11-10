@@ -1,0 +1,29 @@
+# Space App theme: cyanotype / astronomical plate.
+# Prussian blue ground, paper-white ink, one sodium-amber signal reserved for
+# things that need attention (NASA "potentially hazardous", closer than the Moon).
+
+[server]
+enableStaticServing = true  # serves static/fonts (Archivo)
+
+[client]
+toolbarMode = "minimal"
+
+[theme]
+base = "dark"
+backgroundColor = "#0e2741"
+secondaryBackgroundColor = "#13314f"
+textColor = "#e6edf2"
+primaryColor = "#86aed6"
+borderColor = "#284766"
+dataframeBorderColor = "#1c3a58"
+dataframeHeaderBackgroundColor = "#13314f"
+linkColor = "#e6edf2"
+orangeColor = "#f0a43a"
+blueColor = "#86aed6"
+font = "Archivo, 'Helvetica Neue', Arial, sans-serif"
+headingFont = "Archivo, 'Helvetica Neue', Arial, sans-serif"
+headingFontWeights = [760, 700, 680, 650, 600, 600]
+baseRadius = "4px"
+buttonRadius = "4px"
+showWidgetBorder = true
+chartCategoricalColors = ["#f0a43a", "#e6edf2", "#93aac0", "#86aed6"]
