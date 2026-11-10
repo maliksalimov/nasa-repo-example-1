@@ -1,0 +1,4 @@
+# Testlər üçün əlavə asılılıqlar: uv pip install -r requirements-dev.txt
+-r requirements.txt
+pytest==9.2.0
+numpy==2.5.4  # tests/test_serve.py numpy tiplərini yoxlayır (pandas ilə artıq gəlir)

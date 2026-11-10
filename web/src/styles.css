@@ -1,0 +1,741 @@
+/*
+  Space App design tokens.
+  Concept: a cyanotype / astronomical plate. Prussian blue ground, paper-white
+  ink, and one sodium-amber signal reserved for things that need attention
+  (NASA "potentially hazardous", or a pass closer than the Moon).
+  Type: one family (Archivo variable), using its width axis for character.
+*/
+
+:root {
+  --ground: #0e2741;
+  --ground-raised: #13314f;
+  --ink: #e6edf2;
+  --ink-soft: #93aac0;
+  --rule: #284766;
+  --rule-soft: #1c3a58;
+  --signal: #f0a43a;
+  --signal-text: #f5b75c;
+  --band: rgb(147 170 192 / 0.14);
+
+  --font: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif;
+  --narrow: 72%;
+  --measure: 68ch;
+  --page: 1180px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius: 4px;
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ground: #edf2f5;
+    --ground-raised: #e1e9ef;
+    --ink: #0e2741;
+    --ink-soft: #46617d;
+    --rule: #b9c9d6;
+    --rule-soft: #d3dee6;
+    --signal: #e08f1d;
+    --signal-text: #9a5a06;
+    --band: rgb(14 39 65 / 0.08);
+    color-scheme: light;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-stretch: var(--narrow);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  max-width: var(--measure);
+}
+
+code {
+  font-family: inherit;
+  font-weight: 600;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.wordmark {
+  font-stretch: var(--narrow);
+  font-weight: 750;
+  font-size: 1.15rem;
+}
+
+.masthead-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.updated {
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+}
+
+.button {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--ground);
+  background: var(--ink);
+  border: 0;
+  border-radius: var(--radius);
+  padding: 9px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink) 86%, var(--ground));
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.text-button {
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 8px 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--rule);
+}
+
+.notice {
+  margin: 16px 0 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--ink-soft);
+  background: var(--ground-raised);
+  max-width: none;
+}
+
+.notice-signal {
+  border-left-color: var(--signal);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: clamp(40px, 7vw, 80px) 0 24px;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6.2vw, 4.6rem);
+  font-weight: 760;
+  max-width: 19ch;
+  line-height: 1;
+}
+
+.hero-sub {
+  margin-top: 20px;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.strip {
+  margin-top: clamp(28px, 4vw, 48px);
+}
+
+.chart-frame {
+  position: relative;
+}
+
+.chart-frame svg {
+  display: block;
+  overflow: visible;
+}
+
+svg text {
+  fill: var(--ink-soft);
+  font-size: 12px;
+  font-family: var(--font);
+}
+
+.grid-line line {
+  stroke: var(--rule-soft);
+}
+
+.moon-line line {
+  stroke: var(--ink-soft);
+  stroke-dasharray: 3 4;
+}
+
+.moon-line text,
+.earth text,
+.moon-label {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.earth circle {
+  fill: var(--ink);
+}
+
+.dot {
+  fill: var(--ground);
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  cursor: pointer;
+  outline: none;
+}
+
+.dot-signal {
+  fill: var(--signal);
+  stroke: var(--signal);
+}
+
+.dot:hover,
+.dot:focus-visible {
+  stroke-width: 3;
+}
+
+.dot:focus-visible {
+  stroke: var(--signal);
+}
+
+/* The one orchestrated motion on the page: asteroids fly out from Earth. */
+@media (prefers-reduced-motion: no-preference) {
+  .flyby {
+    animation: flyby 1.2s cubic-bezier(0.2, 0.7, 0.15, 1) both;
+  }
+}
+
+@keyframes flyby {
+  from {
+    transform: var(--from);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+.closest-label {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  max-width: none;
+}
+
+.key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.4px solid var(--ink);
+  margin-left: 8px;
+}
+
+.key:first-child {
+  margin-left: 0;
+}
+
+.key-signal {
+  background: var(--signal);
+  border-color: var(--signal);
+}
+
+.legend-note {
+  flex-basis: 100%;
+}
+
+.tip {
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%, calc(-100% - 12px));
+  display: grid;
+  gap: 2px;
+  width: max-content;
+  max-width: 280px;
+  padding: 10px 12px;
+  background: var(--ink);
+  color: var(--ground);
+  border-radius: var(--radius);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.tip[data-flip='left'] {
+  transform: translate(calc(-100% + 24px), calc(-100% - 12px));
+}
+
+.tip strong {
+  font-stretch: var(--narrow);
+  font-size: 0.9375rem;
+}
+
+.tip-signal {
+  font-weight: 650;
+  color: color-mix(in srgb, var(--signal) 55%, var(--ground));
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding: clamp(48px, 7vw, 88px) 0 0;
+}
+
+.section h2 {
+  font-size: clamp(1.75rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  max-width: 22ch;
+}
+
+.section h3 {
+  font-size: 1.2rem;
+  font-weight: 680;
+  margin-bottom: 8px;
+}
+
+.lead {
+  margin-top: 12px;
+  color: var(--ink-soft);
+}
+
+.footnote {
+  margin-top: 12px;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+.empty {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+}
+
+.signal-text {
+  color: var(--signal-text);
+}
+
+/* ---------- Filters ---------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin: 28px 0 20px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chips button {
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.chips button:hover {
+  color: var(--ink);
+  border-color: var(--ink-soft);
+}
+
+.chips button[aria-checked='true'] {
+  color: var(--ground);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.toggle input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--signal);
+}
+
+/* ---------- Week grid ---------- */
+
+.week-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.outlier-ring {
+  fill: none;
+  stroke: var(--ink-soft);
+  stroke-dasharray: 2 3;
+}
+
+.axis-title {
+  font-weight: 600;
+}
+
+/* ---------- Tables ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+caption {
+  text-align: left;
+  font-stretch: var(--narrow);
+  font-weight: 680;
+  font-size: 1.1rem;
+  padding-bottom: 10px;
+}
+
+thead th {
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  text-align: left;
+  padding: 0 8px 8px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+tbody th,
+tbody td {
+  padding: 9px 8px 9px 0;
+  vertical-align: top;
+  text-align: left;
+}
+
+tbody tr + tr > * {
+  border-top: 1px solid var(--rule-soft);
+}
+
+tbody th {
+  font-weight: 600;
+}
+
+.num {
+  text-align: right !important;
+  white-space: nowrap;
+}
+
+.name {
+  display: block;
+}
+
+.sub {
+  display: block;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Baseline ---------- */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.metric {
+  margin: 0;
+}
+
+.metric figcaption {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.metric-name {
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+
+.metric-value {
+  font-stretch: var(--narrow);
+  font-weight: 720;
+  font-size: 2.1rem;
+  line-height: 1.1;
+}
+
+.metric-range,
+.metric-compare {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.metric-compare {
+  margin-top: 6px;
+  color: var(--ink);
+}
+
+.iqr-band {
+  fill: var(--band);
+}
+
+.bar {
+  fill: var(--ink-soft);
+  opacity: 0.55;
+}
+
+.median-line {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.rug {
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+
+.tick {
+  font-size: 11px;
+}
+
+.outliers,
+.weekly {
+  margin-top: 40px;
+}
+
+.outliers ul,
+.risk-notes ul {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.outliers li + li,
+.risk-notes li + li {
+  margin-top: 6px;
+}
+
+.weekly .table-wrap {
+  max-width: 640px;
+}
+
+/* ---------- Risk ---------- */
+
+.verdict {
+  margin-top: 20px;
+  font-stretch: var(--narrow);
+  font-weight: 650;
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  line-height: 1.2;
+  max-width: 34ch;
+}
+
+.verdict-signal {
+  color: var(--signal-text);
+}
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 48px;
+  margin-top: 32px;
+  align-items: start;
+}
+
+.risk-notes {
+  display: grid;
+  gap: 8px;
+  font-size: 0.9375rem;
+}
+
+.risk-notes h3 + * {
+  margin-bottom: 16px;
+}
+
+/* Wide tables scroll inside their own box instead of widening the page. */
+.table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.table-wrap table {
+  min-width: 480px;
+}
+
+/* ---------- Upcoming ---------- */
+
+.lead + div {
+  margin-top: 24px;
+}
+
+.nearest {
+  margin-top: 28px;
+  max-width: 760px;
+}
+
+/* ---------- States ---------- */
+
+.loading {
+  padding: 80px 0;
+  display: grid;
+  gap: 16px;
+}
+
+.skeleton {
+  background: var(--ground-raised);
+  border-radius: var(--radius);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.skeleton-title {
+  height: 64px;
+  width: min(640px, 90%);
+}
+
+.skeleton-line {
+  height: 20px;
+  width: min(420px, 70%);
+}
+
+.skeleton-strip {
+  height: 220px;
+  margin-top: 24px;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+.error-state {
+  padding: 80px 0;
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+.error-state h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  margin-top: clamp(64px, 9vw, 112px);
+  padding: 24px 0 40px;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 860px) {
+  .week-grid,
+  .risk-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .metrics {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .updated {
+    display: none;
+  }
+
+  .risk-grid table td:nth-child(2),
+  .risk-grid table th:nth-child(2) {
+    display: none;
+  }
+
+  .risk-grid .table-wrap table {
+    min-width: 0;
+  }
+}

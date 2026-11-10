@@ -1,0 +1,8 @@
+# Space App: Python asılılıqları (Python 3.13 ilə yoxlanılıb).
+# Qurmaq: uv pip install -r requirements.txt   (və ya: pip install -r requirements.txt)
+# sqlite3, urllib, csv və s. Python-un öz kitabxanasıdır, burada yoxdur.
+
+streamlit==1.67.0   # app.py: Streamlit ekranı
+altair==6.3.0       # app.py: qrafiklər
+pandas==3.1.1       # db.py, logic.py, serve.py: cədvəllər
+certifi==2026.10.23 # data_loader.py: HTTPS sertifikatları (macOS python.org Python-u üçün vacib)
