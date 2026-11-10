@@ -65,7 +65,7 @@ CSS = f"""
     U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
     U+2C60-2C7F, U+A720-A7FF;
 }}
-.block-container {{ max-width: 1180px; padding-top: 2.2rem; }}
+.block-container {{ max-width: 1180px; padding-top: 4.75rem; }}  /* clears the Streamlit Cloud toolbar */
 body, .stApp {{ font-variant-numeric: tabular-nums; }}
 h1, h2, h3, .sa-h1, .sa-h2, .sa-wordmark, .sa-value, .sa-verdict, .sa-caption {{
   font-stretch: 72%; letter-spacing: -0.01em; text-wrap: balance;
